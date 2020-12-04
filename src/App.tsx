@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ChooseImage from './Components/chooseImage/ChooseImage';
 
 
 //for the style of grid refer the app which you have made
@@ -48,14 +48,18 @@ function App() {
   }
   return pageName;
 }
+
+  function getPageContent(){
+    return <ChooseImage /> 
+
+  }
   return (
     <div className="App">
       <header className="App-header">
         <h2>HVC</h2>
       </header>
-      {/* <div className="container"> */}
-  <div className="row">
-    <div className="col-9">
+  <div className="content">
+    <div className="main">
       <div className="content-header d-flex justify-content-between">
       <div>
        { getPageName()}
@@ -78,13 +82,13 @@ function App() {
             <button className={page===5?"navButton":''} onClick={setPage5}>5.Review and Launch</button>
           </nav>  
       </div>
-    </div>
-    <div className="col-3"> 
+      {getPageContent()}
+      </div>
+  <div className="aside"> 
       2 of 3 (wider)
     </div>
   </div>
   </div>
-    // </div>
   );
 }
 

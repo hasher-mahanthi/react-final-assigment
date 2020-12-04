@@ -8,7 +8,6 @@
   height: 44px;
   font-size: calc(10px + 2vmin); /* check font size and font style */
   color: black;
-  /* box-shadow: 10px 5px lightgray; */
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
@@ -31,7 +30,7 @@
     border-radius: 0.2rem;
 }
 .navButton{
-background: #007EFF !important;
+background-color: #007EFF !important; /* use inline styling later */
 }
 .region{
   height: 4em;
@@ -46,4 +45,13 @@ background: #007EFF !important;
   background-color: white;
 }
 
-
+.content{
+  display: flex;
+  flex-wrap: wrap;
+}
+.main{
+  flex:3 60rem;
+}
+.aside{
+  flex:1 20rem;
+}
