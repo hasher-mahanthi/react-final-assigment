@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './styles.css';
 function ImageCard(props:any) {
+   const [selectedOption,setSelectedOption]=useState('');
  
     function setCard(){
+        console.log(props);
         return null;
+    }
+    function onSelectingRadioOption(e:any){
+         console.log(e.target.value);
+          setSelectedOption(e.target.value);
     }
             
     
@@ -35,9 +41,9 @@ return(
         <p >{props.description}</p>
         </div>
         <div className='col-2'>
-        <div >
-            <input type="radio"/>64 bit (x86)<br></br>
-            <input type="radio"/>64 bit (ARM)
+        <div onChange={onSelectingRadioOption}>
+            <input type="radio" value='64-bit-(x86)' checked={selectedOption==='64-bit-(x86)'}/>64 bit (x86)<br></br>
+         {(props.id)!=='4'? <><input type="radio" value='64-bit-(ARM)' checked={selectedOption==='64-bit-(ARM)'}/>64 bit (ARM)</> :null}
         </div>
         <div >
          <button  onClick={setCard}>Select</button>

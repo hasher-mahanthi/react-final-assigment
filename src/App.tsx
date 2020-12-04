@@ -1,12 +1,14 @@
 import React,{useState} from 'react';
 import './App.css';
 import ChooseImage from './Components/chooseImage/ChooseImage';
+import ChooseInstanceType from './Components/chooseInstanceType/ChooseInstanceType';
 
 
 //for the style of grid refer the app which you have made
 function App() {
 
   const[page,setPage]=useState(0);
+  const[selctedLaptop,setSelectedLaptop]=useState('');
 
 
   const setPage1 = () => {
@@ -50,7 +52,10 @@ function App() {
 }
 
   function getPageContent(){
+    if(page===1 ||page===0 )
     return <ChooseImage /> 
+    else if(page==2)
+    return  <ChooseInstanceType />
 
   }
   return (
@@ -85,7 +90,7 @@ function App() {
       {getPageContent()}
       </div>
   <div className="aside"> 
-      2 of 3 (wider)
+      
     </div>
   </div>
   </div>
