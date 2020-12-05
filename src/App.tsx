@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import './App.css';
 import ChooseImage from './Components/chooseImage/ChooseImage';
 import ChooseInstanceType from './Components/chooseInstanceType/ChooseInstanceType';
+import CostEstimates from './Components/costEstimates/CostEstimates';
 
 
 //for the style of grid refer the app which you have made
@@ -9,6 +10,7 @@ function App() {
 
   const[page,setPage]=useState(0);
   const[selctedLaptop,setSelectedLaptop]=useState('');
+  const [selectedModel,setSelectedModel]=useState({});
 
 
   const setPage1 = () => {
@@ -51,9 +53,19 @@ function App() {
   return pageName;
 }
 
+function getSelectedModel(selectedItem:any){
+  console.log(selectedItem,"selectedModel");
+  if(Object.keys(selectedItem).length===0){
+      setSelectedModel(selectedItem);
+  }
+  else{
+    setSelectedModel({...selectedModel,...selectedItem})
+  }
+}
+
   function getPageContent(){
     if(page===1 ||page===0 )
-    return <ChooseImage /> 
+    return <ChooseImage getSelectedModel={getSelectedModel}/> 
     else if(page==2)
     return  <ChooseInstanceType />
 
@@ -90,7 +102,7 @@ function App() {
       {getPageContent()}
       </div>
   <div className="aside"> 
-      
+      <CostEstimates selectedModel={selectedModel}/>
     </div>
   </div>
   </div>

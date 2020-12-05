@@ -49,8 +49,8 @@ background-color: #007EFF !important; /* use inline styling later */
   display: flex;
 }
 .main{
-  flex:3 60%;
+  flex:1 70%;
 }
 .aside{
-  flex:1 40%;
+  flex:1 30%;
 }

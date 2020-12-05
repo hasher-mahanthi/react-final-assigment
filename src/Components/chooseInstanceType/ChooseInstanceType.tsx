@@ -1,10 +1,19 @@
 import React,{useState} from 'react'
 import Select from 'react-select';
 import './styles.css';
+import ErrorModal from './ErrorModal';
 function ChooseInstanceType(props:any) {
+
+    type option={
+        value:string;
+        label:string;
+    }
 
     const [cpuCoreOptions,setCpuCoreOptions]=useState([] as any);
     const [memoryOptions,setMemoryOptions]=useState([] as any);
+    const [selectedCoreOption,setSelectedCoreOption]=useState(({value:'',label:''} as option));
+    const [selectedMemoryOption,setSelectedMemoryOption]=useState({value:'',label:''} as option);
+    const [error,setError]=useState(false);
 
  const generalPurposeCoreOptions=['1Core', '2Core', '4Core'];
     const cpuOptimizedCoreOptions=['1Core', '8Core', '16Core'];//keep these constants in one file 
@@ -19,20 +28,36 @@ function ChooseInstanceType(props:any) {
    function setGeneralPurposeCoreOptions(){
       setCpuCoreOptions(generalPurposeCoreOptions);//keep the functions in one file
       setMemoryOptions(generalPurposeMemoryOptions);
+       if(selectedCoreOption.value&&generalPurposeCoreOptions.some((value)=>value!==selectedCoreOption.value)){
+       
+          console.log("man in general");
+          setError(true);
+       }
    }
    function setCpuOptimizedCoreOptions(){
     setCpuCoreOptions(cpuOptimizedCoreOptions);
     setMemoryOptions(cpuOptimizedMemoryOptions);
+    if(selectedCoreOption.value&&cpuOptimizedCoreOptions.some((value)=>value!==selectedCoreOption.value)){
+        setError(true);
+        console.log("man in Core")
+     }
    }
    function setStorageOptimizedCoreOptions(){
        setCpuCoreOptions(storageOptimizedCoreOptions);
        setMemoryOptions(storageOptimizedMemoryOptions);
+       if(selectedCoreOption.value&&storageOptimizedMemoryOptions.some((value)=>value!==selectedCoreOption.value)){
+        setError(true);
+        console.log("man in storage")
+     }
    }
    function setNetworkOptimizedCoreOptions(){ //check the naming concention once
     setCpuCoreOptions(networkOptimizedCoreOptions);
     setMemoryOptions(networkOptimizedMemoryOptions);
+    if(selectedCoreOption.value&&networkOptimizedCoreOptions.some((value)=>value!==selectedCoreOption.value)){
+        setError(true);
+        console.log("man in storage")
+     }
    }
-    console.log(cpuCoreOptions);
     function getCpuCoreSelectMenuOptions(){
         let selectMenuOptions:any=[];
         let options=[...cpuCoreOptions];
@@ -49,9 +74,19 @@ function ChooseInstanceType(props:any) {
         });
         return selectMenuOptions;
     }
+
+  const   handleCoreOptionChange = (option:any) => {
+    setSelectedCoreOption(option);
+      };
+      const   handleMemoryOptioonChange = (option:any) => {
+        setSelectedMemoryOption(option)
+          };
+
+          //change the name of navbar
     return (
         <div>
-            <section className="nav-bar d-flex justify-content-between">
+             { error &&  alert('hi') }
+            <section className="nav-bar d-flex ">  
             <button className="nav-button" onClick={setGeneralPurposeCoreOptions}>General Purpose</button>
             <button className="nav-button" onClick={setCpuOptimizedCoreOptions}>CPU Optimized</button>
             <button className="nav-button" onClick={setStorageOptimizedCoreOptions}>Storage Optimized</button>
@@ -60,8 +95,13 @@ function ChooseInstanceType(props:any) {
  
              <h6 className='select-menu-title'>Create Configuration</h6>
             <div className=" d-flex ">
-            <Select className="cpu-core-select select" options={getCpuCoreSelectMenuOptions()}/>
-            <Select className="memory-select select" options={getMemorySelectMenuOptions()}/>
+            <Select className="cpu-core-select select" options={getCpuCoreSelectMenuOptions()} value={selectedCoreOption}
+        onChange={handleCoreOptionChange}/>
+            <Select className="memory-select select" options={getMemorySelectMenuOptions()}
+            value={selectedMemoryOption}
+            onChange={handleMemoryOptioonChange}
+            />
+       
             </div>
         </div>
     )

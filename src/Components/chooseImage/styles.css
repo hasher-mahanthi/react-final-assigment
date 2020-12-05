@@ -11,8 +11,7 @@
 
 .image-card{
     background-color: white;
-    margin-left: 2em;
-    width: 60rem;
+    margin-left: 1em;
     box-shadow: 0.1em 0.05em 0.5em 0.1em gray;
     height:7rem;
     margin-top: 2em;
@@ -69,4 +68,11 @@
     /* margin-bottom: 1em; */
     margin-top: -5em;
     padding-bottom: 2em;
+}
+
+.image-name{
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 39px;
 }

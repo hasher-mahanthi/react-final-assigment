@@ -43,7 +43,7 @@ function ChooseImage(props:any) {
         
         
        const imagecards=  imageList.map((item:any,index:any) =>(
-                <ImageCard id={item.id} name={item.name} cost={item.cost} description={item.description} type={item.type} 
+                <ImageCard id={item.id} name={item.name} cost={item.cost} description={item.description} type={item.type} getSelectedModel={props.getSelectedModel}
                />
             ));
             return <div>{imagecards}</div>      

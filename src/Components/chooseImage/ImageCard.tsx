@@ -4,6 +4,8 @@ function ImageCard(props:any) {
    const [selectedOption,setSelectedOption]=useState('');
  
     function setCard(){
+        let selectedModel={...props,'type':selectedOption}
+        props.getSelectedModel(selectedModel);
         console.log(props);
         return null;
     }
@@ -37,7 +39,7 @@ return(
     <div className="image-card row ">
         <div className="image-block col-1"></div>
         <div className='image-content col-9'>
-        <h2 >{props.name}</h2>
+        <div className="image-name">{props.name}</div>
         <p >{props.description}</p>
         </div>
         <div className='col-2'>
