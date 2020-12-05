@@ -35,8 +35,8 @@ return(
     <div className="image-card-list">
     
     <div className="image-card row ">
-        <div className="image-block col-2"></div>
-        <div className='col-8'>
+        <div className="image-block col-1"></div>
+        <div className='image-content col-9'>
         <h2 >{props.name}</h2>
         <p >{props.description}</p>
         </div>

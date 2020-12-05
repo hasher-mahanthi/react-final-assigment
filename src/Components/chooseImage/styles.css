@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
+.image-content{
+    text-align: left;
+}
+
 .image-card{
     background-color: white;
     margin-left: 2em;
