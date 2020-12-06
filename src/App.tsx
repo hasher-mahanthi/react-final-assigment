@@ -1,10 +1,17 @@
 import React,{useState} from 'react';
-import './App.css';
+
+//Components
+import Select from 'react-select';
 import ChooseImage from './Components/chooseImage/ChooseImage';
 import ChooseInstanceType from './Components/chooseInstanceType/ChooseInstanceType';
 import CostEstimates from './Components/costEstimates/CostEstimates';
-import Select from 'react-select';
+import ChooseStorageAndNewtwork from './Components/chooseStorageandNetworkType/ChooseStorageAndNetworkType';
+
+//Constants
 import {REGIONS} from  './Constants';
+
+//CSS imports
+import './App.css';
 
 
 //for the style of grid refer the app which you have made
@@ -92,8 +99,11 @@ function getSelectedModel(selectedItem:any){
   function getPageContent(){
     if(page===1 ||page===0 )
     return <ChooseImage getSelectedModel={getSelectedModel} selectedRegion={selectedRegion}/> 
-    else if(page==2)
+    else if(page===2)
     return  <ChooseInstanceType getSelectedModel={getSelectedModel}/>
+    else if(page===3){
+     return <ChooseStorageAndNewtwork />
+    }
 
   }
   return (
