@@ -4,6 +4,8 @@ import './styles.css';
 import ErrorModal from './ErrorModal';
 function ChooseInstanceType(props:any) {
 
+    const {getSelectedModel}=props;
+
     type option={
         value:string;
         label:string;
@@ -15,7 +17,7 @@ function ChooseInstanceType(props:any) {
     const [selectedMemoryOption,setSelectedMemoryOption]=useState({value:'',label:''} as option);
     const [error,setError]=useState(false);
 
- const generalPurposeCoreOptions=['1Core', '2Core', '4Core'];
+    const generalPurposeCoreOptions=['1Core', '2Core', '4Core'];
     const cpuOptimizedCoreOptions=['1Core', '8Core', '16Core'];//keep these constants in one file 
     const storageOptimizedCoreOptions=['1Core', '2Core', '8Core','16Core'];
     const networkOptimizedCoreOptions=['1Core', '2Core', '4Core','8Core','16Core']; 
@@ -28,35 +30,55 @@ function ChooseInstanceType(props:any) {
    function setGeneralPurposeCoreOptions(){
       setCpuCoreOptions(generalPurposeCoreOptions);//keep the functions in one file
       setMemoryOptions(generalPurposeMemoryOptions);
-       if(selectedCoreOption.value&&generalPurposeCoreOptions.some((value)=>value!==selectedCoreOption.value)){
+       if(selectedCoreOption.value&&generalPurposeCoreOptions.every((value)=>value!==selectedCoreOption.value)){
        
-          console.log("man in general");
-          setError(true);
+        alert(selectedCoreOption.value+'is not available for GeneralPurposeCoreOptions') 
+          
+       }
+       if(selectedMemoryOption.value&&generalPurposeMemoryOptions.every((value)=>value!==selectedMemoryOption.value)){
+       
+        alert(selectedMemoryOption.value+'is not available for GeneralPurposeMemoryOptions') 
+          
        }
    }
    function setCpuOptimizedCoreOptions(){
     setCpuCoreOptions(cpuOptimizedCoreOptions);
     setMemoryOptions(cpuOptimizedMemoryOptions);
-    if(selectedCoreOption.value&&cpuOptimizedCoreOptions.some((value)=>value!==selectedCoreOption.value)){
-        setError(true);
-        console.log("man in Core")
+    if(selectedCoreOption.value&&cpuOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
+        
+        alert(selectedMemoryOption.value+'is not available for CpuOptimizedCoreOptions') 
      }
+     if(selectedMemoryOption.value&&cpuOptimizedMemoryOptions.every((value)=>value!==selectedMemoryOption.value)){
+       
+        alert(selectedMemoryOption.value+'is not available for GeneralPurposeMemoryOptions') 
+          
+       }
    }
    function setStorageOptimizedCoreOptions(){
        setCpuCoreOptions(storageOptimizedCoreOptions);
        setMemoryOptions(storageOptimizedMemoryOptions);
-       if(selectedCoreOption.value&&storageOptimizedMemoryOptions.some((value)=>value!==selectedCoreOption.value)){
-        setError(true);
-        console.log("man in storage")
+       if(selectedCoreOption.value&&storageOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
+        
+        alert(selectedCoreOption.value+'is not available for storage optimized CoreOptions') 
      }
+     if(selectedMemoryOption.value&&storageOptimizedMemoryOptions.every((value)=>value!==selectedMemoryOption.value)){
+       
+        alert(selectedMemoryOption.value+'is not available for GeneralPurposeMemoryOptions') 
+          
+       }
    }
    function setNetworkOptimizedCoreOptions(){ //check the naming concention once
     setCpuCoreOptions(networkOptimizedCoreOptions);
     setMemoryOptions(networkOptimizedMemoryOptions);
-    if(selectedCoreOption.value&&networkOptimizedCoreOptions.some((value)=>value!==selectedCoreOption.value)){
-        setError(true);
-        console.log("man in storage")
+    if(selectedCoreOption.value&&networkOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
+        
+        alert(selectedCoreOption.value+'is not available for NetworkOptimizedCoreOptions') 
      }
+     if(selectedMemoryOption.value&&networkOptimizedMemoryOptions.every((value)=>value!==selectedMemoryOption.value)){
+       
+        alert(selectedMemoryOption.value+'is not available for GeneralPurposeMemoryOptions') 
+          
+       }
    }
     function getCpuCoreSelectMenuOptions(){
         let selectMenuOptions:any=[];
@@ -77,15 +99,20 @@ function ChooseInstanceType(props:any) {
 
   const   handleCoreOptionChange = (option:any) => {
     setSelectedCoreOption(option);
+    getSelectedModel({
+        'core':option.value,
+    })
       };
       const   handleMemoryOptioonChange = (option:any) => {
-        setSelectedMemoryOption(option)
+        setSelectedMemoryOption(option);
+        getSelectedModel({
+            'memory':option.value,
+        })
           };
 
           //change the name of navbar
     return (
         <div>
-             { error &&  alert('hi') }
             <section className="nav-bar d-flex ">  
             <button className="nav-button" onClick={setGeneralPurposeCoreOptions}>General Purpose</button>
             <button className="nav-button" onClick={setCpuOptimizedCoreOptions}>CPU Optimized</button>

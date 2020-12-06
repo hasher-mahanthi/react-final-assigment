@@ -3,21 +3,33 @@ import './App.css';
 import ChooseImage from './Components/chooseImage/ChooseImage';
 import ChooseInstanceType from './Components/chooseInstanceType/ChooseInstanceType';
 import CostEstimates from './Components/costEstimates/CostEstimates';
+import Select from 'react-select';
+import {REGIONS} from  './Constants';
 
 
 //for the style of grid refer the app which you have made
 function App() {
-
+  type option={
+    value:string;
+    label:string;
+}
   const[page,setPage]=useState(0);
-  const[selctedLaptop,setSelectedLaptop]=useState('');
-  const [selectedModel,setSelectedModel]=useState({});
+  //const[selctedLaptop,setSelectedLaptop]=useState('');
+  const [selectedModel,setSelectedModel]=useState({} as any);
+  const [selectedRegion,setSelectedRegion]=useState({value:'us-east-1',label:'us-east-1'} as option);
+
 
 
   const setPage1 = () => {
     setPage(1);
   }
   const setPage2 = () => {
+    if(selectedModel.name){
     setPage(2);
+    }
+    else{
+      alert('you have not choosen any model yet')
+    }
   }
   const setPage3 = () => {
     setPage(3);
@@ -27,6 +39,20 @@ function App() {
   }
   const setPage5 = () => {
     setPage(5);
+  }
+
+  const handleSelectedRegionChange=(option:any)=>{
+    setSelectedRegion(option);
+       console.log(selectedModel,selectedRegion,"selectedRegion","selectedModel");
+       setSelectedRegion((state) => {
+        if((state.value==='us-west-1'||state.value==='india')&&(selectedModel.id==4)){
+          alert(`Windows is only available in us-east-1 and us-east-2 If you proceed you may lose data`);
+        }
+        
+        return state;
+      });
+      
+     
   }
   
   function getPageName(){
@@ -65,9 +91,9 @@ function getSelectedModel(selectedItem:any){
 
   function getPageContent(){
     if(page===1 ||page===0 )
-    return <ChooseImage getSelectedModel={getSelectedModel}/> 
+    return <ChooseImage getSelectedModel={getSelectedModel} selectedRegion={selectedRegion}/> 
     else if(page==2)
-    return  <ChooseInstanceType />
+    return  <ChooseInstanceType getSelectedModel={getSelectedModel}/>
 
   }
   return (
@@ -81,17 +107,15 @@ function getSelectedModel(selectedItem:any){
       <div>
        { getPageName()}
         </div>
-        <div>
-        <select placeholder="Region">
-            <option value="us-east-1<">us-east-1</option>
-            <option value="us-east-2">us-east-2</option>
-            <option value="us-west-1">us-west-1</option>
-            <option value="india">india</option>
-          </select>
-          </div>
+       
+          <Select className='region-selector' options={REGIONS} 
+          onChange={handleSelectedRegionChange}
+          value={selectedRegion}
+          />
+
       </div>
       <div>
-      <nav className="navbar">
+      <nav className="navbar"> 
             <button className={page===1?"navButton":''} onClick={setPage1}>1.Choose Image</button>
             <button className={page===2?"navButton":''} onClick={setPage2}>2.Choose Instance Type</button>
             <button className={page===3?"navButton":''} onClick={setPage3}>3.Choose Storage and Network</button>

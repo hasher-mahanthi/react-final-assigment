@@ -54,3 +54,6 @@ background-color: #007EFF !important; /* use inline styling later */
 .aside{
   flex:1 30%;
 }
+.region-selector{
+  width:9rem;
+}

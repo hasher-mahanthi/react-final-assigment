@@ -1,49 +1,21 @@
 import React from 'react';
 import ImageCard from './ImageCard'
 import './styles.css';
+import {IMAGE_LIST,IMAGE_LIST_WITHOUT_WINDOWS} from './constants';
 function ChooseImage(props:any) {
-    const imageList =
-        [
-          {
-            id: '1',
-            name: 'Linux 2 Image',
-            description: "Linux 2 comes with 5 years of support.It provides optimal performance",
-            type: [{name:'64-bit (x86)',selected:true,},{name:'64-bit (ARM)',selected:true,}],
-            cost: 243.61,
-          },
-          {
-            id: '2',
-            name: 'Ubuntu Server 18.04 LTS',
-            description: "Linux 2 comes with 5 years of support.It provides  optimal performance",
-            type: [{name:'64-bit (x86)',selected:true,},{name:'64-bit (ARM)',selected:true,}],
-            cost: 243.61,
-          },
-          {
-            id: '3',
-            name: 'Red Hat Enterprise Linux 8',
-            description: "Linux 2 comes with 5 years of support.It provides   optimal performance",
-            type: [{name:'64-bit (x86)',selected:true,},{name:'64-bit (ARM)',selected:true,}],
-            cost: 300,
-          },
-          {
-            id: '4',
-            name: 'Microsoft Windows Server 2019 Base',
-            description: "Linux 2 comes with 5 years of support.It provides  optimal performance",
-            type: [{name:'64-bit (x86)',selected:true,},],
-            cost: 338.77,
-          },
-          {
-            id: '5',
-            name: 'SUSE Linux Enterprise Server',
-            description: "Linux 2 comes with 5 years of support.It provides  optimal performance",
-            type: [{name:'64-bit (x86)',selected:true,},{name:'64-bit (ARM)',selected:true,}],
-            cost: 200.22,
-          },
-        ];
-        
+
+
+  const {getSelectedModel,selectedRegion}=props;
+  let imageList;
+  if(selectedRegion.value==='us-west-1'||selectedRegion.value==='india'){
+    imageList=IMAGE_LIST_WITHOUT_WINDOWS;
+  }
+  else{
+    imageList=IMAGE_LIST;
+  }
         
        const imagecards=  imageList.map((item:any,index:any) =>(
-                <ImageCard id={item.id} name={item.name} cost={item.cost} description={item.description} type={item.type} getSelectedModel={props.getSelectedModel}
+                <ImageCard id={item.id} name={item.name} cost={item.cost} description={item.description} type={item.type} getSelectedModel={getSelectedModel}
                />
             ));
             return <div>{imagecards}</div>      
