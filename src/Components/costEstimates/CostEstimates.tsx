@@ -40,7 +40,7 @@ function CostEstimates(props:any) {
   }
     return (
         <div className="cost-estimate-card">
-            <div className='cost-estimate-title'>Cost Estimates</div>
+            <div data-testid='cost'  className='cost-estimate-title'>Cost Estimates</div>
     {selectedModel.cost &&  <div className="modal-tags d-flex justify-content-between">
     <div className='modal-name modal-property'>{selectedModel.name}</div>
     <div className='modal-cost modal-property'>${selectedModel.cost}</div>

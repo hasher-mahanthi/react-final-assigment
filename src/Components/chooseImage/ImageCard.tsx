@@ -19,13 +19,11 @@ return(
     <div className="image-card row ">
         <div className="image-block col-1"></div>
         <div className='image-content col-9'>
-        <div className="image-name">{props.name}</div>
+        <div data-testid='my-test-id'className="image-name">{props.name}</div>
         <p >{props.description}</p>
         </div>
         <div className='col-2'>
         <div className='radio-btns'onChange={onSelectingRadioOption}>
- {/* <input type="radio" value='64-bit-(x86)' checked={selectedOption==='64-bit-(x86)'}/>64 bit (x86)<br></br>
-         {(props.id)!=='4'? <><input type="radio" value='64-bit-(ARM)' checked={selectedOption==='64-bit-(ARM)'}/>64 bit (ARM)</> :null} */}
         <div className='d-flex'>
         <input type="radio" value='64-bit-(x86)' className='radio-btn' checked={selectedOption==='64-bit-(x86)'}/>
         <div className='radio-label'>64 bit (x86)</div>
