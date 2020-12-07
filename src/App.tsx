@@ -6,7 +6,7 @@ import ChooseImage from './Components/chooseImage/ChooseImage';
 import ChooseInstanceType from './Components/chooseInstanceType/ChooseInstanceType';
 import CostEstimates from './Components/costEstimates/CostEstimates';
 import ChooseStorageAndNewtwork from './Components/chooseStorageandNetworkType/ChooseStorageAndNetworkType';
-
+import Summary from './Components/summary/Summary';
 //Constants
 import {REGIONS} from  './Constants';
 
@@ -79,38 +79,17 @@ function App() {
      
   }
   
-//   function getPageName(){
-//     let pageName;
-//     switch(page){
-//     case 1:
-//       pageName = "Choose Image";
-//       break;
-//       case 2:
-//       pageName = "Choose Instance Type";
-//       break;
-//       case 3:
-//       pageName = "Choose Storage and Network";
-//       break;
-//       case 4:
-//       pageName = "Configure Security";
-//       break;
-//       case 5:
-//         pageName = "Review and Launch";
-//         break;
-//     default:
-//       pageName = "Choose Image";
-//   }
-//   return pageName;
-// }
+
+
 
 function getSelectedModel(selectedItem:any){
   console.log(selectedItem,"selectedModel");
-  if(Object.keys(selectedItem).length===0){
-      setSelectedModel(selectedItem);
-  }
-  else{
-    setSelectedModel({...selectedModel,...selectedItem})
-  }
+  // if(Object.keys(selectedItem).length===0){
+  //     setSelectedModel(selectedItem);
+  // }
+  // else{
+    setSelectedModel({...selectedModel,...selectedItem});
+  // }
 }
 
   function getPageContent(){
@@ -120,6 +99,9 @@ function getSelectedModel(selectedItem:any){
     return  <ChooseInstanceType getSelectedModel={getSelectedModel}/>
     else if(page===3){
      return <ChooseStorageAndNewtwork />
+    }
+    else if(page===5){
+      return <Summary selectedModel={selectedModel}/>
     }
 
   }
@@ -144,15 +126,6 @@ function getSelectedModel(selectedItem:any){
       <NavBar page={page} 
        setPage1={setPage1} setPage2={setPage2} setPage3={setPage3}
         setPage4={setPage4} setPage5={setPage5}/>
-      {/* <div>
-      <nav className="navbar"> 
-            <button className={page===1?"navButton":''} onClick={setPage1}>1.Choose Image</button>
-            <button className={page===2?"navButton":''} onClick={setPage2}>2.Choose Instance Type</button>
-            <button className={page===3?"navButton":''} onClick={setPage3}>3.Choose Storage and Network</button>
-            <button className={page===4?"navButton":''} onClick={setPage4}>4.Configure Security</button>
-            <button className={page===5?"navButton":''} onClick={setPage5}>5.Review and Launch</button>
-          </nav>  
-      </div> */}
       {getPageContent()}
       </div>
   <div className="aside"> 

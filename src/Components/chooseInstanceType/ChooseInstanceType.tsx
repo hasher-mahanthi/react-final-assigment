@@ -20,6 +20,9 @@ function ChooseInstanceType(props:any) {
    function setGeneralPurposeCoreOptions(){
       setCpuCoreOptions(generalPurposeCoreOptions);//keep the functions in one file
       setMemoryOptions(generalPurposeMemoryOptions);
+      getSelectedModel({
+        'instance':'General Pupose'
+    })
        if(selectedCoreOption.value&&generalPurposeCoreOptions.every((value:any)=>value!==selectedCoreOption.value)){
        
         alert(selectedCoreOption.value+'is not available for GeneralPurposeCoreOptions') 
@@ -34,6 +37,9 @@ function ChooseInstanceType(props:any) {
    function setCpuOptimizedCoreOptions(){
     setCpuCoreOptions(cpuOptimizedCoreOptions);
     setMemoryOptions(cpuOptimizedMemoryOptions);
+    getSelectedModel({
+        'instance':'CPU Optimized',
+    })
     if(selectedCoreOption.value&&cpuOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
         
         alert(selectedMemoryOption.value+'is not available for CpuOptimizedCoreOptions') 
@@ -47,6 +53,9 @@ function ChooseInstanceType(props:any) {
    function setStorageOptimizedCoreOptions(){
        setCpuCoreOptions(storageOptimizedCoreOptions);
        setMemoryOptions(storageOptimizedMemoryOptions);
+       getSelectedModel({
+        'instance':'Storage Optimized',
+    })
        if(selectedCoreOption.value&&storageOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
         
         alert(selectedCoreOption.value+'is not available for storage optimized CoreOptions') 
@@ -60,6 +69,9 @@ function ChooseInstanceType(props:any) {
    function setNetworkOptimizedCoreOptions(){ //check the naming concention once
     setCpuCoreOptions(networkOptimizedCoreOptions);
     setMemoryOptions(networkOptimizedMemoryOptions);
+    getSelectedModel({
+        'instance':'Network Optimized',
+    })
     if(selectedCoreOption.value&&networkOptimizedCoreOptions.every((value)=>value!==selectedCoreOption.value)){
         
         alert(selectedCoreOption.value+'is not available for NetworkOptimizedCoreOptions') 
