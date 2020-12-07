@@ -51,3 +51,35 @@
   .total > button {
     flex: 1;
   }
+  .modal-tags{
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+  }
+  .cost-estimate-title{
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    color: #000000;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+  }
+  .modal-property{
+    font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+color: #000000;
+  }
+  .bar-line{
+    display: flex;
+    border: 1px solid #C4C4C4;
+    position: relative;
+    top: 13rem;
+  }
+  .total-cost{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.3rem;
+    position: relative;
+    top: 13rem;
+}
+  

@@ -12,7 +12,10 @@ import {REGIONS} from  './Constants';
 
 //CSS imports
 import './App.css';
+import NavBar from './Components/navBar/NavBar';
 
+//utils
+import {getPageName} from './utilityFunctions/utils';
 
 //for the style of grid refer the app which you have made
 function App() {
@@ -24,6 +27,15 @@ function App() {
   //const[selctedLaptop,setSelectedLaptop]=useState('');
   const [selectedModel,setSelectedModel]=useState({} as any);
   const [selectedRegion,setSelectedRegion]=useState({value:'us-east-1',label:'us-east-1'} as option);
+
+  //things to do
+
+  //adding valid comments
+
+  //destrcturing(this is first)
+
+  //testing
+
 
 
 
@@ -39,7 +51,12 @@ function App() {
     }
   }
   const setPage3 = () => {
+    if(selectedModel.memory){
     setPage(3);
+    }
+    else{
+      alert('you have not choosen choose instance type yet')
+    }
   }
   const setPage4 = () => {
     setPage(4);
@@ -62,29 +79,29 @@ function App() {
      
   }
   
-  function getPageName(){
-    let pageName;
-    switch(page){
-    case 1:
-      pageName = "Choose Image";
-      break;
-      case 2:
-      pageName = "Choose Instance Type";
-      break;
-      case 3:
-      pageName = "Choose Storage and Network";
-      break;
-      case 4:
-      pageName = "Configure Security";
-      break;
-      case 5:
-        pageName = "Review and Launch";
-        break;
-    default:
-      pageName = "Choose Image";
-  }
-  return pageName;
-}
+//   function getPageName(){
+//     let pageName;
+//     switch(page){
+//     case 1:
+//       pageName = "Choose Image";
+//       break;
+//       case 2:
+//       pageName = "Choose Instance Type";
+//       break;
+//       case 3:
+//       pageName = "Choose Storage and Network";
+//       break;
+//       case 4:
+//       pageName = "Configure Security";
+//       break;
+//       case 5:
+//         pageName = "Review and Launch";
+//         break;
+//     default:
+//       pageName = "Choose Image";
+//   }
+//   return pageName;
+// }
 
 function getSelectedModel(selectedItem:any){
   console.log(selectedItem,"selectedModel");
@@ -114,8 +131,8 @@ function getSelectedModel(selectedItem:any){
   <div className="content">
     <div className="main">
       <div className="content-header d-flex justify-content-between">
-      <div>
-       { getPageName()}
+      <div className="page-title">
+       { getPageName(page)}
         </div>
        
           <Select className='region-selector' options={REGIONS} 
@@ -124,7 +141,10 @@ function getSelectedModel(selectedItem:any){
           />
 
       </div>
-      <div>
+      <NavBar page={page} 
+       setPage1={setPage1} setPage2={setPage2} setPage3={setPage3}
+        setPage4={setPage4} setPage5={setPage5}/>
+      {/* <div>
       <nav className="navbar"> 
             <button className={page===1?"navButton":''} onClick={setPage1}>1.Choose Image</button>
             <button className={page===2?"navButton":''} onClick={setPage2}>2.Choose Instance Type</button>
@@ -132,7 +152,7 @@ function getSelectedModel(selectedItem:any){
             <button className={page===4?"navButton":''} onClick={setPage4}>4.Configure Security</button>
             <button className={page===5?"navButton":''} onClick={setPage5}>5.Review and Launch</button>
           </nav>  
-      </div>
+      </div> */}
       {getPageContent()}
       </div>
   <div className="aside"> 

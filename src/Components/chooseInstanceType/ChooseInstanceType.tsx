@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import Select from 'react-select';
 import './styles.css';
+import {generalPurposeCoreOptions,cpuOptimizedCoreOptions,storageOptimizedCoreOptions,networkOptimizedCoreOptions,
+    generalPurposeMemoryOptions,storageOptimizedMemoryOptions,cpuOptimizedMemoryOptions,networkOptimizedMemoryOptions} from './constants';
 import ErrorModal from './ErrorModal';
 function ChooseInstanceType(props:any) {
 
@@ -15,22 +17,10 @@ function ChooseInstanceType(props:any) {
     const [memoryOptions,setMemoryOptions]=useState([] as any);
     const [selectedCoreOption,setSelectedCoreOption]=useState(({value:'',label:''} as option));
     const [selectedMemoryOption,setSelectedMemoryOption]=useState({value:'',label:''} as option);
-    const [error,setError]=useState(false);
-
-    const generalPurposeCoreOptions=['1Core', '2Core', '4Core'];
-    const cpuOptimizedCoreOptions=['1Core', '8Core', '16Core'];//keep these constants in one file 
-    const storageOptimizedCoreOptions=['1Core', '2Core', '8Core','16Core'];
-    const networkOptimizedCoreOptions=['1Core', '2Core', '4Core','8Core','16Core']; 
-
-    const generalPurposeMemoryOptions=['256MB', '512MB', '1GB', '2GB', '4GB'];
-    const cpuOptimizedMemoryOptions=['16GB','32GB','64GB'];//keep these constants in one file 
-    const storageOptimizedMemoryOptions=['16GB','32GB','64GB'];
-    const networkOptimizedMemoryOptions=['256MB','512MB','1GB','2GB','4GB','16GB','32GB','64GB'];  
-
    function setGeneralPurposeCoreOptions(){
       setCpuCoreOptions(generalPurposeCoreOptions);//keep the functions in one file
       setMemoryOptions(generalPurposeMemoryOptions);
-       if(selectedCoreOption.value&&generalPurposeCoreOptions.every((value)=>value!==selectedCoreOption.value)){
+       if(selectedCoreOption.value&&generalPurposeCoreOptions.every((value:any)=>value!==selectedCoreOption.value)){
        
         alert(selectedCoreOption.value+'is not available for GeneralPurposeCoreOptions') 
           
@@ -110,7 +100,6 @@ function ChooseInstanceType(props:any) {
         })
           };
 
-          //change the name of navbar
     return (
         <div>
             <section className="nav-bar d-flex ">  
@@ -120,15 +109,14 @@ function ChooseInstanceType(props:any) {
             <button className="nav-button" onClick={setNetworkOptimizedCoreOptions}>Network Optimized</button>
             </section>
  
-             <h6 className='select-menu-title'>Create Configuration</h6>
-            <div className=" d-flex ">
+             <div className='select-menu-title'>Create Configuration</div>
+            <div className="select-menus d-flex ">
             <Select className="cpu-core-select select" options={getCpuCoreSelectMenuOptions()} value={selectedCoreOption}
         onChange={handleCoreOptionChange}/>
             <Select className="memory-select select" options={getMemorySelectMenuOptions()}
             value={selectedMemoryOption}
             onChange={handleMemoryOptioonChange}
             />
-       
             </div>
         </div>
     )

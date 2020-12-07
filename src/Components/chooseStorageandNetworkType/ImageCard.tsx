@@ -30,7 +30,19 @@ function ImageCard(props:any) {
         let value=e.target.value;
         console.log(value);
         if(e.key==='Enter'){
-           setCapacityValue(value);
+            if(storageType.value==='magnetic-disks' && (value>=40 && value<=2000)){
+                setCapacityValue(value);
+            }
+            else{
+                alert('got an error in memory');
+            }
+            if(storageType.value==='SSD' && (value>=20 && value<=512)){
+                setCapacityValue(value);
+            }
+            else{
+                alert('got an error in ssd');
+            }
+          
            if(value<100){
             setIopsValue(100);
            }
@@ -53,7 +65,7 @@ function ImageCard(props:any) {
             </div>
             <div className="col-1">
             <div className="tagName">Volume</div>
-    <div className="tagItem">{volumeContent}</div>
+            <div className="tagItem">{volumeContent}</div>
             </div>
             <div className="col-2">
             <div className="tagName">Capacity(GB)</div>

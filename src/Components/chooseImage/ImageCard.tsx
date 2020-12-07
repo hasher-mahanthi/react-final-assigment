@@ -23,12 +23,17 @@ return(
         <p >{props.description}</p>
         </div>
         <div className='col-2'>
-        <div onChange={onSelectingRadioOption}>
-            <input type="radio" value='64-bit-(x86)' checked={selectedOption==='64-bit-(x86)'}/>64 bit (x86)<br></br>
-         {(props.id)!=='4'? <><input type="radio" value='64-bit-(ARM)' checked={selectedOption==='64-bit-(ARM)'}/>64 bit (ARM)</> :null}
+        <div className='radio-btns'onChange={onSelectingRadioOption}>
+ {/* <input type="radio" value='64-bit-(x86)' checked={selectedOption==='64-bit-(x86)'}/>64 bit (x86)<br></br>
+         {(props.id)!=='4'? <><input type="radio" value='64-bit-(ARM)' checked={selectedOption==='64-bit-(ARM)'}/>64 bit (ARM)</> :null} */}
+        <div className='d-flex'>
+        <input type="radio" value='64-bit-(x86)' className='radio-btn' checked={selectedOption==='64-bit-(x86)'}/>
+        <div className='radio-label'>64 bit (x86)</div>
+        </div>
+         {(props.id)!=='4'? <div  className='d-flex'><input className='radio-btn' type="radio" value='64-bit-(ARM)' checked={selectedOption==='64-bit-(ARM)'}/><div className='radio-label'>64 bit (ARM)</div></div> :null}
         </div>
         <div >
-         <button  onClick={setCard}>Select</button>
+         <button className='select-btn'  onClick={setCard}>Select</button>
          </div> 
          </div>  
     </div>

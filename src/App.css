@@ -12,10 +12,23 @@
   text-align: center;
 }
 .content-header{
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.navbar{
+.page-title{
+  font-family: Montserrat;
+font-size: 44px;
+font-style: normal;
+font-weight: 500;
+line-height: 54px;
+letter-spacing: 0rem;
+text-align: left;
+margin-left: 1rem;
+
+}
+
+/* .navbar{
   display: flex;
   flex-wrap: nowrap;
   padding-bottom: 3em;
@@ -31,7 +44,7 @@
 }
 .navButton{
 background-color: #007EFF !important; /* use inline styling later */
-}
+/* } */
 .region{
   height: 4em;
   width: 15em;
